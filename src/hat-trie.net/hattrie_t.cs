@@ -7,6 +7,6 @@ namespace hattrie.net
     internal struct hattrie_t
     {
         public node_ptr root; // root node
-        public UInt32 m;      // number of stored keys
+        public uint m;      // number of stored keys
     }
 }

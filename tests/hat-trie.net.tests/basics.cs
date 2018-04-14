@@ -22,16 +22,18 @@ namespace hat_trie.net.tests
                 trie.Add("Bar",345);
                 trie.Add("FooBar",567);
 
-                Assert.False(trie.TryGet("ABC", out _));
-                Assert.False(trie.TryGet("FooBar1", out _));
+                Assert.Equal(3,trie.Count);
 
-                Assert.True(trie.TryGet("FooBar",out var fooBarValue));
+                Assert.False(trie.TryGetValue("ABC", out _));
+                Assert.False(trie.TryGetValue("FooBar1", out _));
+
+                Assert.True(trie.TryGetValue("FooBar",out var fooBarValue));
                 Assert.Equal((uint)567,fooBarValue);
 
-                Assert.True(trie.TryGet("Bar",out var barValue));
+                Assert.True(trie.TryGetValue("Bar",out var barValue));
                 Assert.Equal((uint)345,barValue);
 
-                Assert.True(trie.TryGet("Foo",out var fooValue));
+                Assert.True(trie.TryGetValue("Foo",out var fooValue));
                 Assert.Equal((uint)123,fooValue);
             }
         }

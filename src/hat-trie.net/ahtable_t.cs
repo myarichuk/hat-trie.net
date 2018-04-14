@@ -12,11 +12,11 @@ namespace hattrie.net
         public byte c0;
         public byte c1;
 
-        public UInt32 n;        // number of slots
-        public UInt32 m;        // number of key/value pairs stored
-        public UInt32 max_m;    // number of stored keys before we resize
+        public uint n;        // number of slots
+        public uint m;        // number of key/value pairs stored
+        public uint max_m;    // number of stored keys before we resize
 
-        public UInt32* slot_sizes;
+        public uint* slot_sizes;
         public byte** slots;
     }
 }

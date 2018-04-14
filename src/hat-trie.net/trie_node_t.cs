@@ -9,7 +9,7 @@ namespace hattrie.net
         public byte flag;
 
         /* the value for the key that is consumed on a trie node */
-        public UInt32 val;
+        public uint val;
 
         /* Map a character to either a trie_node_t or a ahtable_t. The first byte
          * must be examined to determine which. */
