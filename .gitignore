@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Debug
+/Release
+/src/hat-trie.net/bin
+/src/hat-trie.net/obj
+/tests/hat-trie.net.tests/bin
+/tests/hat-trie.net.tests/obj
