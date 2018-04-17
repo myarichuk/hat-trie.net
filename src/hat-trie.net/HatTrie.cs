@@ -36,14 +36,16 @@ namespace hattrie.net
         {
             get
             {
-                if(!TryGetValue(key,out var val))
-                    throw new KeyNotFoundException($"Item under key = {key} was not found");
+                if (!TryGetValue(key, out var val))
+                    ThrowKeyNotFound(key);
 
                 return val;
             }
 
             set => Add(key,value);
         }
+
+        private static void ThrowKeyNotFound(string key) => throw new KeyNotFoundException($"Item under key = {key} was not found");       
 
         #region P/Invoke Definitions
 
@@ -74,6 +76,27 @@ namespace hattrie.net
         //Delete a given key from trie. Returns 0 if successful or -1 if not found.
         [DllImport("hat-trie.dll")]
         internal static extern int hattrie_del (hattrie_t* root, [MarshalAs(UnmanagedType.LPStr)] string key, uint len);
+
+        [DllImport("hat-trie.dll")]
+        internal static extern hattrie_iter_t* hattrie_iter_begin (hattrie_t* root, bool sorted);        
+
+        [DllImport("hat-trie.dll")]
+        internal static extern void hattrie_iter_next (hattrie_t* root);
+
+        [DllImport("hat-trie.dll")]
+        internal static extern bool hattrie_iter_finished (hattrie_t* root);
+
+        [DllImport("hat-trie.dll")]
+        internal static extern void hattrie_iter_free (hattrie_t* root);        
+
+        [DllImport("hat-trie.dll")]
+        internal static extern char* hattrie_iter_key (hattrie_t* root, uint* len);
+
+        [DllImport("hat-trie.dll")]
+        internal static extern uint* hattrie_iter_val (hattrie_t* root);        
+
+        [DllImport("hat-trie.dll")]
+        internal static extern bool hattrie_iter_equal (hattrie_iter_t* a, hattrie_iter_t* b);        
         #endregion
 
         public HatTrie()
